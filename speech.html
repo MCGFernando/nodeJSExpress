@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="speechdiv">
+
+    </div>
+    <script>
+        var speech = true
+        const speechdiv = document.getElementById('speechdiv')
+        
+
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+        const reconhecimento = new SpeechRecognition()
+
+        reconhecimento.interimResults = true
+
+        reconhecimento.addEventListener('result', e =>{
+            const texto = Array.from(e.results).map(result => result[0])
+            .map(result => result.transcript).join(' ')
+            speechdiv.innerHTML = texto
+            if(texto == "navegador"){
+                alert ('Ola mero mortal. Sua ordem ]e meu comando')
+            }
+            console.log(texto)
+        })
+
+        if(speech){
+            reconhecimento.start()
+            reconhecimento.addEventListener('end', reconhecimento.start)
+        }
+
+        
+    </script>
+</body>
+</html>
