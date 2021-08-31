@@ -1,9 +1,10 @@
 var mysql = require('mysql')
 module.exports = function(){
     return mysql.createConnection({
-        host: 'localhost',
+        host: '192.168.100.25',
+        port:3306,
         user: 'root',
-        password: 'marodcgf07',
+        password: 'mypass',
         database: 'portal_noticias'
     })
 }
